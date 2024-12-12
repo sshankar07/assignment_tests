@@ -59,6 +59,18 @@ This will run the tests in parallel across all configured browsers (Chromium, Fi
 5. **Viewing Test Results**
 Test results will be saved in the playwright-report/ directory as an HTML file. You can open this file in your browser to view detailed test reports.
 
+6. **Project Structure**
+
+├── tests/                    # Test scripts
+│   ├── dataDrivenTests.spec.js  # Main test script for data-driven tests
+├── util/                     # Utility functions
+│   ├── helper.js             # Helper functions like login, navigate
+├── testData.json             # JSON file containing test data
+├── playwright.config.ts      # Playwright configuration
+├── global-setup.js           # Global setup for authentication
+├── .env                      # Environment variables for credentials
+├── README.md                 # Project documentation
+
 
 **Test Configuration**
 The test suite is configured using Playwright's defineConfig method in playwright.config.ts. 
