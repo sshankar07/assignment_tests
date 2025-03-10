@@ -68,5 +68,9 @@ Chromium
 Firefox
 Webkit (Safari)
 
+**Test Results screenshot for all the 25 test cases**
+
+<img width="1470" alt="Screenshot 2025-03-10 at 1 57 56 PM" src="https://github.com/user-attachments/assets/3092cda9-45ab-4f77-91c6-e21a1fcb4756" />
+
 **Conclusion**
 This project ensures reliable automated testing for the Login and Home Page using Playwright. It follows best practices by avoiding duplication, using environment variables, and maintaining structured test cases.
