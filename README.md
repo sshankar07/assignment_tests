@@ -29,12 +29,12 @@ git clone https://github.com/sshankar07/assignment_tests.git
 
 cd playwright-assessment
 
-3. **Install Dependencies**
+2. **Install Dependencies**
 Run the following command to install all the required dependencies:
 
 npm install
 
-5. **Configure Environment Variables**
+3. **Configure Environment Variables**
    
 Create a .env file in the root directory and add your environment variables for authentication:
 
