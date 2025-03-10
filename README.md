@@ -4,30 +4,15 @@
 
 This project automates the UI testing of a simple Login and Home Page web application using Playwright. The automation script interacts with an HTML file (app/assignment.html), validates various test scenarios, and ensures functionality correctness.
 
-📜 Test Cases Document
-All test cases are documented in testCases/testcases.docx.
+**Test Cases Document**
+
+All test cases are documented in **testCases/testcases.docx**.
 Includes Login Page, Home Page, Negative Scenarios, Edge Cases, and Accessibility Checks.
 
 **Project Structure**
 
-📦 Assignment_Playwright
-│── 📂 app
-│   ├── assignment.html      # Web application under test
-│
-│── 📂 tests
-│   ├── loginPage.spec.js    # Login Page test cases
-│   ├── homePage.spec.js     # Home Page test cases
-│
-│── 📂 testCases
-│   ├── testcases.docx       # Documented test cases
-│
-│── 📂 util
-│   ├── helper.js            # Utility functions (e.g., login method)
-│
-│── .env                     # Stores username and password
-│── README.md                 # Project documentation
-│── package.json              # Dependencies and Playwright setup
-│── playwright.config.js       # Playwright configuration
+<img width="599" alt="Screenshot 2025-03-10 at 1 49 57 PM" src="https://github.com/user-attachments/assets/cec27fc6-f5a8-49f5-a23a-051f2e0c7ad6" />
+
 
 
 **Prerequisites**
@@ -40,7 +25,7 @@ dotenv (for environment variable management)
 
 **Setup Instructions**
 1. **Clone the Repository**
-git clone https://github.com/sshankar07/playwright-assessment.git
+git clone https://github.com/sshankar07/assignment_tests.git
 
 cd playwright-assessment
 
