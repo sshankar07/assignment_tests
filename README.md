@@ -2,23 +2,32 @@
 
 **Overview**
 
-This repository contains an automated test suite for a web application built using Playwright. 
-The tests are designed to verify the functionality of a task management application. 
-The automation framework uses a data-driven approach, where test data is provided via a JSON file, allowing tests to be run with different configurations.
+This project automates the UI testing of a simple Login and Home Page web application using Playwright. The automation script interacts with an HTML file (app/assignment.html), validates various test scenarios, and ensures functionality correctness.
 
-**Features**
+📜 Test Cases Document
+All test cases are documented in testCases/testcases.docx.
+Includes Login Page, Home Page, Negative Scenarios, Edge Cases, and Accessibility Checks.
 
-**Data-Driven Tests:** Tests are run dynamically for different sets of input data, making it reusable for various scenarios.
+**Project Structure**
 
-**Environment Variables:** Sensitive data like credentials are managed securely using a .env file.
-
-**Cross-Browser Testing:** Tests are executed across Chromium, Firefox, and Webkit browsers.
-
-**Modular Test Design:** Utility functions and shared configurations are used to reduce code duplication.
-
-**Parallel Test Execution:** Tests are run in parallel for faster execution.
-
-**Robust Locators:** Advanced Playwright locators ensure reliable element identification.
+📦 Assignment_Playwright
+│── 📂 app
+│   ├── assignment.html      # Web application under test
+│
+│── 📂 tests
+│   ├── loginPage.spec.js    # Login Page test cases
+│   ├── homePage.spec.js     # Home Page test cases
+│
+│── 📂 testCases
+│   ├── testcases.docx       # Documented test cases
+│
+│── 📂 util
+│   ├── helper.js            # Utility functions (e.g., login method)
+│
+│── .env                     # Stores username and password
+│── README.md                 # Project documentation
+│── package.json              # Dependencies and Playwright setup
+│── playwright.config.js       # Playwright configuration
 
 
 **Prerequisites**
@@ -48,8 +57,6 @@ USERNAME=your-username
 
 PASSWORD=your-password
 
-BASE_URL=https://animated-gingersnap-8cf7f2.netlify.app
-
 4. **Run the Tests**
 To run the tests, execute the following command:
 
@@ -59,18 +66,10 @@ This will run the tests in parallel across all configured browsers (Chromium, Fi
 5. **Viewing Test Results**
 Test results will be saved in the playwright-report/ directory as an HTML file. You can open this file in your browser to view detailed test reports.
 
-6. **Project Structure**
+View Detailed Test Report
+After execution, generate and open a report:
 
-├── tests/                    # Test scripts
-│   ├── dataDrivenTests.spec.js  # Main test script for data-driven tests
-├── util/                     # Utility functions
-│   ├── helper.js             # Helper functions like login, navigate
-├── testData.json             # JSON file containing test data
-├── playwright.config.ts      # Playwright configuration
-├── global-setup.js           # Global setup for authentication
-├── .env                      # Environment variables for credentials
-├── README.md                 # Project documentation
-
+npx playwright show-report
 
 **Test Configuration**
 The test suite is configured using Playwright's defineConfig method in playwright.config.ts. 
@@ -83,3 +82,6 @@ Key configurations include:
 Chromium
 Firefox
 Webkit (Safari)
+
+**Conclusion**
+This project ensures reliable automated testing for the Login and Home Page using Playwright. It follows best practices by avoiding duplication, using environment variables, and maintaining structured test cases.

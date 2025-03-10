@@ -12,21 +12,23 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: process.env.BASE_URL || 'https://animated-gingersnap-8cf7f2.netlify.app',
+    baseURL: process.env.BASE_URL || '',
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure'
   },
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-    {
+    // Enable this if you need to run your test on firefox and WebKit also
+    /*{
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },
+    },*/
   ],
 });

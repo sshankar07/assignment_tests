@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Please Login</title>
+    <style>
+        .error {
+            color: red;
+            margin-left: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            margin: 100px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        label {
+            width: 120px;
+            text-align: left;
+        }
+        input[type="text"], input[type="password"], input[type="date"], select {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            width: calc(100% - 130px);
+        }
+        button {
+            margin: 0 5px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1.708 0L8 10.293l5.646-5.647a.5.5 0 0 1.708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") no-repeat right 5px center;
+            padding-right: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        select::-ms-expand {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loginContainer" class="container">
+    <h2>Please Login</h2>
+    <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <span id="usernameError" class="error"></span>
+    </div>
+    <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <span id="passwordError" class="error"></span>
+    </div>
+    <div id="loginError" class="error"></div>
+    <div>
+        <button onclick="clearFields()">Clear</button>
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<div id="homeContainer" style="display:none; text-align: center;">
+    <h1>Home Page</h1>
+
+    <div class="input-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" placeholder="Please enter a valid date" onchange="enableTeamSelect()">
+    </div>
+    <div class="input-group">
+        <label for="team">Favorite Team:</label>
+        <select id="team" name="team" disabled onchange="enableNameInput()">
+            <option value="">Select a team</option>
+            <option value="ARI">Arizona Diamondbacks</option>
+            <option value="ATL">Atlanta Braves</option>
+            <option value="BAL">Baltimore Orioles</option>
+            <option value="BOS">Boston Red Sox</option>
+            <option value="CHC">Chicago Cubs</option>
+            <option value="CWS">Chicago White Sox</option>
+            <option value="CIN">Cincinnati Reds</option>
+            <option value="CLE">Cleveland Guardians</option>
+            <option value="COL">Colorado Rockies</option>
+            <option value="DET">Detroit Tigers</option>
+            <option value="HOU">Houston Astros</option>
+            <option value="KC">Kansas City Royals</option>
+            <option value="LAA">Los Angeles Angels</option>
+            <option value="LAD">Los Angeles Dodgers</option>
+            <option value="MIA">Miami Marlins</option>
+            <option value="MIL">Milwaukee Brewers</option>
+            <option value="MIN">Minnesota Twins</option>
+            <option value="NYM">New York Mets</option>
+            <option value="NYY">New York Yankees</option>
+            <option value="OAK">Oakland Athletics</option>
+            <option value="PHI">Philadelphia Phillies</option>
+            <option value="PIT">Pittsburgh Pirates</option>
+            <option value="SD">San Diego Padres</option>
+            <option value="SF">San Francisco Giants</option>
+            <option value="SEA">Seattle Mariners</option>
+            <option value="STL">St. Louis Cardinals</option>
+            <option value="TB">Tampa Bay Rays</option>
+            <option value="TEX">Texas Rangers</option>
+            <option value="TOR">Toronto Blue Jays</option>
+            <option value="WSH">Washington Nationals</option>
+        </select>
+        <span id="teamError" class="error"></span>
+    </div>
+    <div class="input-group hidden" id="nameInputGroup">
+        <label for="name">Enter a Player's Name:</label>
+        <input type="text" id="name" name="name">
+    </div>
+
+    <button id="submitButton" onclick="submitForm()">Submit</button>
+
+</div>
+
+<div id="thankYouContainer" style="display:none; text-align: center;">
+    <h1>Thank You!</h1>
+</div>
+
+<script>
+    function clearFields() {
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("usernameError").textContent = "";
+        document.getElementById("passwordError").textContent = "";
+    }
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+        const loginError = document.getElementById("loginError"); // Get the login error div
+
+        usernameError.textContent = "";
+        passwordError.textContent = "";
+        loginError.textContent = ""; // Clear any previous general login error
+
+        if (!username &&!password) {
+            loginError.textContent = "Enter a valid user name and password"; // Set the general error
+            return; // Stop further execution
+        }
+
+        if (username === "admin" && password === "p@$$w0rd") {
+            document.getElementById("loginContainer").style.display = "none";
+            document.getElementById("homeContainer").style.display = "block";
+        } else {
+            if (username!== "admin") {
+                usernameError.textContent = "This user does not exist";
+            } else if (password!== "p@$$w0rd") {
+                passwordError.textContent = "Invalid Password";
+            }
+        }
+    }
+
+    function enableTeamSelect() {
+        const dateInput = document.getElementById("date");
+        const teamSelect = document.getElementById("team");
+        const teamError = document.getElementById("teamError");
+
+        if (!dateInput.value) {
+            teamError.textContent = "Please select a date first";
+            teamSelect.disabled = true;
+            return;
+        }
+
+        teamError.textContent = "";
+        teamSelect.disabled = true; // Disable while waiting
+
+        const delay = Math.floor(Math.random() * 8000) + 3000; // Random delay between 3 and 10 seconds
+
+        setTimeout(() => {
+            teamSelect.disabled = false;
+        }, delay);
+    }
+
+    function enableNameInput() {
+        const teamSelect = document.getElementById("team");
+        const nameInputGroup = document.getElementById("nameInputGroup");
+        nameInputGroup.classList.toggle("hidden",!teamSelect.value);
+    }
+
+    function submitForm() {
+        const date = document.getElementById("date").value;
+        const team = document.getElementById("team").value;
+        const name = document.getElementById("name").value;
+
+        if (!date ||!team ||!name) {
+            alert("Please fill out all fields");
+            return;
+        }
+
+        document.getElementById("homeContainer").innerHTML = "";
+
+        const thankYouContainer = document.getElementById("thankYouContainer");
+        thankYouContainer.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
