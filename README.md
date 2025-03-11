@@ -56,6 +56,9 @@ After execution, generate and open a report:
 
 npx playwright show-report
 
+**LATEST PIPELINE RESULTS**
+https://github.com/sshankar07/assignment_tests/actions/runs/13771527244/job/38511059762
+
 **Test Configuration**
 The test suite is configured using Playwright's defineConfig method in playwright.config.ts. 
 Key configurations include:
